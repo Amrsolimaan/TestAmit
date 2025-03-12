@@ -8,7 +8,12 @@ class ToDoList {
   }
 
   void removeTask(String task) {
-    tasks.remove(task);
+    if (tasks.contains(task)) {
+      tasks.remove(task);
+      print("Task removed: $task");
+    } else {
+      print("Error: Task '$task' not found!");
+    }
   }
 
   void showTasks() {
@@ -40,8 +45,8 @@ void main() async {
 
   await toDoList.loadTasks();
 
-  toDoList.addTask("Complete Exam");
-  toDoList.removeTask("Study Dart");
+  toDoList.addTask("Complete project");
+  toDoList.removeTask("Nonexistent Task"); // تجربة حذف مهمة غير موجودة
   toDoList.showTasks();
 
   await toDoList.saveTasks();
